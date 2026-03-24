@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-glow page-glow-left"></div>
+    <div class="page-glow page-glow-right"></div>
+
+    <header class="site-header">
+        <div class="brand-block">
+            <p class="eyebrow">Hand-poured calm</p>
+            <h1>Candle Emporium</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#collection">Collection</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li>
+                    <a href="cart.html" id="cart-link" class="cart-link">
+                        <span class="cart-icon" aria-hidden="true">🛒</span>
+                        <span class="cart-label">Cart</span>
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <a href="index.html" class="profile-logo-link" aria-label="Go to home page">
+            <img src="./images/profile.jpg" alt="Profile Logo" class="profile-logo">
+        </a>
+    </header>
+
+    <main class="cart-page-main">
+        <section class="cart-hero">
+            <p class="eyebrow">Product Spotlight</p>
+            <h2>See every candle detail before you add it to your cart.</h2>
+            <p class="cart-preview-copy">Browse the fragrance profile, check the exact price, and add the quantity you want from one dedicated product page.</p>
+            <a href="index.html#collection" class="secondary-link">Back to Collection</a>
+        </section>
+
+        <section class="product-detail-section">
+            <div id="product-detail"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Candle Emporium</p>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

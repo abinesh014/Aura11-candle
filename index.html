@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candle Emporium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="intro-split" class="intro-split">
+        <img src="./images/candle_img.png" alt="Intro Candle" class="intro-image">
+    </div>
+
+    <div class="page-glow page-glow-left"></div>
+    <div class="page-glow page-glow-right"></div>
+
+    <header class="site-header">
+        <div class="brand-block">
+            <p class="eyebrow">Hand-poured calm</p>
+            <h1>Candle Emporium</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#about">About</a></li>
+                <li>
+                    <a href="cart.html" id="cart-link" class="cart-link">
+                        <span class="cart-icon" aria-hidden="true">🛒</span>
+                        <span class="cart-label">cart</span>
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <a href="index.html" class="profile-logo-link" aria-label="Go to home page">
+            <img src="./images/profile.jpg" alt="Profile Logo" class="profile-logo">
+        </a>
+    </header>
+
+    <main>
+        <section id="slideshow-section">
+            <div class="slideshow-container">
+                <div class="slideshow-overlay">
+                    <p class="eyebrow">Small batch candles</p>
+                    <h2>Light a room that feels softer, warmer, and more alive.</h2>
+                    <p>Discover layered fragrances, natural wax blends, and beautifully styled jars designed for slow evenings and thoughtful gifting.</p>
+                    <div class="hero-actions">
+                        <a href="#collection" class="primary-link">Shop Collection</a>
+                        <a href="#about" class="secondary-link">Our Story</a>
+                    </div>
+                    <div class="hero-stats">
+                        <article>
+                            <strong>24h</strong>
+                            <span>dispatch on ready stock</span>
+                        </article>
+                        <article>
+                            <strong>5+</strong>
+                            <span>signature fragrance moods</span>
+                        </article>
+                        <article>
+                            <strong>100%</strong>
+                            <span>made for cozy interiors</span>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="slideshow">
+                    <img src="./images/my_profile1.png" alt="Candle display 1" class="active">
+                    <img src="./images/my_profile2.png" alt="Candle display 2">
+                    <img src="./images/my_profile3.png" alt="Candle display 3">
+                </div>
+
+                <div class="slide-indicators" id="slide-indicators" aria-label="Slideshow indicators"></div>
+                <button class="prev" onclick="changeSlide(-1)" aria-label="Previous slide">&lt;</button>
+                <button class="next" onclick="changeSlide(1)" aria-label="Next slide">&gt;</button>
+            </div>
+        </section>
+
+        <section id="home" class="intro-panel">
+            <div>
+                <p class="eyebrow">Why customers return</p>
+                <h2>More than fragrance, it is atmosphere.</h2>
+            </div>
+            <div class="intro-copy">
+                <p>Our candle collection is curated for people who want their homes to feel intentional. From floral mornings to grounded evening blends, every jar is chosen to create a mood that lasts beyond the flame.</p>
+                <div class="feature-strip">
+                    <article>
+                        <h3>Clean aesthetic</h3>
+                        <p>Minimal vessels and elegant label styling for modern spaces.</p>
+                    </article>
+                    <article>
+                        <h3>Gift-ready picks</h3>
+                        <p>Choose from scents designed for hosting, winding down, or celebrating.</p>
+                    </article>
+                    <article>
+                        <h3>Simple shopping</h3>
+                        <p>Search, sort, and save favorites before adding to cart.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="collection">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Browse the studio</p>
+                    <h2>Our Collection</h2>
+                </div>
+                <p id="results-summary" class="results-summary">Preparing catalog...</p>
+            </div>
+
+            <div class="catalog-toolbar">
+                <label class="search-field" for="search">
+                    <span>Search</span>
+                    <input type="text" id="search" placeholder="Search candles by name or note">
+                </label>
+
+                <label class="sort-field" for="sort-select">
+                    <span>Sort by</span>
+                    <select id="sort-select">
+                        <option value="featured">Featured</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="name-asc">Name: A to Z</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="filter-row">
+                <button class="filter-chip active" data-filter="all" type="button">All</button>
+                <button class="filter-chip" data-filter="floral" type="button">Floral</button>
+                <button class="filter-chip" data-filter="fresh" type="button">Fresh</button>
+                <button class="filter-chip" data-filter="citrus" type="button">Citrus</button>
+                <button class="filter-chip" data-filter="woody" type="button">Woody</button>
+                <button class="filter-chip" data-filter="cozy" type="button">Cozy</button>
+            </div>
+
+            <p id="catalog-status">Loading candle catalog...</p>
+            <div id="collection-sections" class="collection-sections">
+                <div class="collection-group">
+                    <div class="collection-copy">
+                        <p class="eyebrow">Soft florals</p>
+                        <h3>Floral Candles</h3>
+                        <p>Romantic blends with lavender, rose, and jasmine notes.</p>
+                    </div>
+                    <div class="candle-grid" id="floral-grid"></div>
+                </div>
+
+                <div class="collection-group">
+                    <div class="collection-copy">
+                        <p class="eyebrow">Clean air moods</p>
+                        <h3>Fresh And Citrus</h3>
+                        <p>Bright, airy candles made for mornings, open windows, and clean interiors.</p>
+                    </div>
+                    <div class="candle-grid" id="fresh-grid"></div>
+                </div>
+
+                <div class="collection-group">
+                    <div class="collection-copy">
+                        <p class="eyebrow">Evening warmth</p>
+                        <h3>Woody And Cozy</h3>
+                        <p>Richer candles with amber, cedar, spice, and comforting warmth.</p>
+                    </div>
+                    <div class="candle-grid" id="warm-grid"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-layout">
+            <div>
+                <p class="eyebrow">Inside the brand</p>
+                <h2>Designed for rituals, quiet corners, and memorable gifts.</h2>
+            </div>
+            <div class="about-copy">
+                <p>We love candles that feel premium without being complicated. That means warm fragrance direction, elevated styling, and a storefront that helps you quickly find the scent profile that fits your moment.</p>
+                <div class="about-notes">
+                    <span>Natural-inspired presentation</span>
+                    <span>Thoughtful scent curation</span>
+                    <span>Modern cart experience</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="favorites" class="favorites-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Saved for later</p>
+                    <h2>Your Favorites</h2>
+                </div>
+                <p class="results-summary">Locally saved on this device</p>
+            </div>
+            <div id="favorites-list" class="favorites-list">
+                <p class="empty-state">No favorites yet. Tap the heart on a candle to save it here.</p>
+            </div>
+        </section>
+
+        <section class="cart-preview">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Bag overview</p>
+                    <h2>Your Cart</h2>
+                </div>
+                <p id="cart-summary" class="results-summary">0 items selected</p>
+            </div>
+            <p class="cart-preview-copy">Your cart now has its own dedicated page for a cleaner shopping flow.</p>
+            <a href="cart.html" class="primary-link">Open Cart Page</a>
+        </section>
+
+        <section id="contact" class="contact-panel">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Reach us</p>
+                    <h2>Contact Details</h2>
+                </div>
+                <p class="results-summary">We are available for orders and support</p>
+            </div>
+            <div class="contact-grid">
+                <article class="contact-card">
+                    <h3>Email</h3>
+                    <a href="mailto:abineshofficial01@gmail.com">abineshofficial01@gmail.com</a>
+                </article>
+                <article class="contact-card">
+                    <h3>WhatsApp</h3>
+                    <a href="https://wa.me/918072673238" target="_blank" rel="noreferrer">8072673238</a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Candle Emporium</p>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

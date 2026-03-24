@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candle Cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-glow page-glow-left"></div>
+    <div class="page-glow page-glow-right"></div>
+
+    <header class="site-header">
+        <div class="brand-block">
+            <p class="eyebrow">Hand-poured calm</p>
+            <h1>Candle Emporium</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#collection">Collection</a></li>
+                <li><a href="index.html#favorites">Favorites</a></li>
+                <li>
+                    <a href="cart.html" id="cart-link" class="cart-link">
+                        <span class="cart-icon" aria-hidden="true">🛒</span>
+                        <span class="cart-label">Cart</span>
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <a href="index.html" class="profile-logo-link" aria-label="Go to home page">
+            <img src="./images/profile.jpg" alt="Profile Logo" class="profile-logo">
+        </a>
+    </header>
+
+    <main class="cart-page-main">
+        <section class="cart-hero">
+            <p class="eyebrow">Checkout space</p>
+            <h2>Your candle bag, all in one place.</h2>
+            <p class="cart-preview-copy">Review selected candles, remove items, and complete your order without scrolling through the full storefront.</p>
+            <a href="index.html#collection" class="secondary-link">Continue Shopping</a>
+        </section>
+
+        <section id="cart" class="cart-section standalone-cart-section">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Bag overview</p>
+                    <h2>Your Cart</h2>
+                </div>
+                <p id="cart-summary" class="results-summary">0 items selected</p>
+            </div>
+            <div id="cart-items"></div>
+            <div id="cart-total">Total: INR 0</div>
+            <div class="checkout-layout">
+                <div class="checkout-card">
+                    <h3>Customer Details</h3>
+                    <div class="checkout-fields">
+                        <label class="checkout-field">
+                            <span>Full Name</span>
+                            <input type="text" id="customer-name" placeholder="Enter your name">
+                        </label>
+                        <label class="checkout-field">
+                            <span>Phone Number</span>
+                            <input type="tel" id="customer-phone" placeholder="Enter your phone number">
+                        </label>
+                        <label class="checkout-field checkout-field-full">
+                            <span>Delivery Address</span>
+                            <textarea id="customer-address" rows="4" placeholder="Enter your delivery address"></textarea>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="checkout-card">
+                    <h3>Payment Method</h3>
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="payment-method" value="cod" checked>
+                            <span>Cash on Delivery</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment-method" value="online">
+                            <span>Online Payment</span>
+                        </label>
+                    </div>
+                    <div id="online-payment-box" class="payment-box hidden">
+                        <p class="payment-title">Exact online payment amount</p>
+                        <strong id="payment-amount">INR 0</strong>
+                        <p class="payment-note">After payment, tap complete payment to continue the order.</p>
+                        <button id="complete-payment-btn" type="button" class="secondary-link">Complete Payment</button>
+                    </div>
+                    <div id="payment-status" class="payment-status">Payment pending</div>
+                    <button id="checkout-btn">Place Order</button>
+                </div>
+            </div>
+
+            <div class="order-progress-panel">
+                <h3>Order Status</h3>
+                <div id="order-progress" class="order-progress">
+                    <div class="order-step">
+                        <strong>1. Cart review</strong>
+                        <span>Add items and confirm your details</span>
+                    </div>
+                    <div class="order-step">
+                        <strong>2. Payment</strong>
+                        <span>Choose Cash on Delivery or Online Payment</span>
+                    </div>
+                    <div class="order-step">
+                        <strong>3. Order ready</strong>
+                        <span>Your order will be prepared after confirmation</span>
+                    </div>
+                    <div class="order-step">
+                        <strong>4. Ready for delivery</strong>
+                        <span>The order status will move here after preparation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-panel compact-contact">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Support</p>
+                        <h2>Contact Details</h2>
+                    </div>
+                    <p class="results-summary">Share orders directly with us</p>
+                </div>
+                <div class="contact-grid">
+                    <article class="contact-card">
+                        <h3>Email</h3>
+                        <a href="mailto:abineshofficial01@gmail.com">abineshofficial01@gmail.com</a>
+                    </article>
+                    <article class="contact-card">
+                        <h3>WhatsApp</h3>
+                        <a href="https://wa.me/918072673238" target="_blank" rel="noreferrer">8072673238</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Candle Emporium</p>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
