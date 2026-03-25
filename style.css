@@ -207,8 +207,10 @@ nav a:hover::after {
     gap: 0.5rem;
     padding: 0.65rem 0.9rem;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    color: #fffaf5;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 236, 222, 0.18);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
 }
 
 .cart-link::after {
@@ -217,7 +219,7 @@ nav a:hover::after {
 
 .cart-link:hover {
     color: #fff9f4;
-    background: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.22);
     transform: translateY(-1px);
 }
 
@@ -276,10 +278,12 @@ section {
 }
 
 #slideshow-section {
-    width: 100%;
+    width: 100vw;
     max-width: none;
     padding: 0;
     margin: 0 0 1.25rem;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
     background: transparent;
     border: 0;
     box-shadow: none;
@@ -287,6 +291,7 @@ section {
 
 .slideshow-container {
     position: relative;
+    width: 100%;
     min-height: 100vh;
     padding-top: 86px;
     overflow: hidden;
@@ -383,9 +388,13 @@ section {
 }
 
 .secondary-link {
-    color: #fff6ee;
-    background: rgba(255, 255, 255, 0.09);
-    border: 1px solid rgba(255, 240, 230, 0.24);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-deep);
+    background: rgba(255, 248, 241, 0.96);
+    border: 1px solid rgba(125, 63, 36, 0.22);
+    box-shadow: 0 12px 24px rgba(85, 54, 32, 0.1);
 }
 
 .primary-link:hover,
@@ -786,6 +795,11 @@ section h2 {
     width: min(1080px, calc(100% - 1.2rem));
 }
 
+.product-detail-layout {
+    display: grid;
+    gap: 1.4rem;
+}
+
 .product-detail-card {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -846,14 +860,50 @@ section h2 {
     flex-wrap: wrap;
 }
 
+.product-detail-actions .secondary-link {
+    min-width: 150px;
+    font-weight: 800;
+}
+
 .product-detail-quantity {
     max-width: 120px;
+}
+
+.related-products-panel {
+    padding: 1.2rem;
+    border-radius: 26px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.76);
+}
+
+.related-heading {
+    margin-bottom: 1rem;
+}
+
+.related-products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
+}
+
+.contact-logo-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 1.25rem;
+}
+
+.contact-panel .contact-logo {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.82);
+    box-shadow: 0 16px 30px rgba(85, 54, 32, 0.16);
 }
 
 .contact-card,
@@ -871,6 +921,39 @@ section h2 {
     margin: 0 0 0.55rem;
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.7rem;
+}
+
+.contact-card-top {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.8rem;
+}
+
+.contact-logo,
+.payment-option-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-rose));
+    color: #2f160f;
+    font-weight: 800;
+    box-shadow: 0 10px 22px rgba(125, 63, 36, 0.14);
+}
+
+.payment-option-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 0.78rem;
+}
+
+.contact-card-note {
+    margin: 0;
+    color: var(--text-soft);
 }
 
 .contact-card a {
@@ -940,6 +1023,20 @@ section h2 {
     margin-bottom: 1rem;
 }
 
+#complete-payment-btn {
+    width: 100%;
+    margin-top: 0.35rem;
+    font-weight: 800;
+    color: #fff9f3;
+    background: linear-gradient(135deg, var(--accent-rose), var(--accent), var(--accent-deep));
+    border: 0;
+    box-shadow: 0 14px 24px rgba(125, 63, 36, 0.2);
+}
+
+#complete-payment-btn:hover {
+    box-shadow: 0 18px 30px rgba(125, 63, 36, 0.26);
+}
+
 .payment-box strong {
     display: block;
     margin-bottom: 0.5rem;
@@ -953,6 +1050,40 @@ section h2 {
     color: var(--text-soft);
 }
 
+.payment-instructions {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0 0 0.9rem;
+}
+
+.payment-step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    padding: 0.85rem 0.9rem;
+    border-radius: 16px;
+    background: rgba(255, 248, 241, 0.85);
+    border: 1px solid rgba(120, 79, 53, 0.12);
+}
+
+.payment-step p {
+    margin: 0;
+    color: var(--text-main);
+}
+
+.payment-step-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--accent-deep);
+    color: #fff7ef;
+    font-weight: 800;
+}
+
 .payment-status {
     margin-bottom: 1rem;
     padding: 0.85rem 1rem;
@@ -960,6 +1091,13 @@ section h2 {
     background: rgba(255, 248, 241, 0.92);
     color: var(--accent-deep);
     font-weight: 700;
+}
+
+#checkout-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .hidden {
@@ -1304,7 +1442,8 @@ footer {
     .contact-grid,
     .checkout-layout,
     .checkout-fields,
-    .product-detail-card {
+    .product-detail-card,
+    .related-products-grid {
         grid-template-columns: 1fr;
     }
 
@@ -1361,6 +1500,15 @@ footer {
     .cart-item button {
         width: 100%;
         text-align: center;
+    }
+
+    .contact-card-top,
+    .payment-step {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card-top {
+        align-items: start;
     }
 
     .section-heading {
