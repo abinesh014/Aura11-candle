@@ -896,16 +896,6 @@ section h2 {
     margin: 0 0 1.25rem;
 }
 
-.contact-panel .contact-logo {
-    width: 96px;
-    height: 96px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
-    border: 3px solid rgba(255, 255, 255, 0.82);
-    box-shadow: 0 16px 30px rgba(85, 54, 32, 0.16);
-}
-
 .contact-card,
 .checkout-card,
 .order-progress-panel {
@@ -930,7 +920,7 @@ section h2 {
     margin-bottom: 0.8rem;
 }
 
-.contact-logo,
+.contact-card-top .contact-logo,
 .payment-option-icon {
     display: inline-flex;
     align-items: center;
@@ -943,6 +933,16 @@ section h2 {
     color: #2f160f;
     font-weight: 800;
     box-shadow: 0 10px 22px rgba(125, 63, 36, 0.14);
+}
+
+.contact-panel .contact-logo {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.82);
+    box-shadow: 0 16px 30px rgba(85, 54, 32, 0.16);
 }
 
 .payment-option-icon {

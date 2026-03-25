@@ -527,33 +527,6 @@ function renderProductDetailPage() {
     const tags = getMoodTags(product)
         .map((tag) => `<span class="tag">${tag}</span>`)
         .join('');
-<<<<<<< HEAD
-
-    productDetailContainer.innerHTML = `
-        <article class="product-detail-card">
-            <div class="product-detail-media">
-                <img src="${product.image}" alt="${product.name}">
-            </div>
-            <div class="product-detail-copy">
-                <p class="eyebrow">Signature Candle</p>
-                <h2>${product.name}</h2>
-                <p class="product-detail-price">${formatCurrency(product.price)}</p>
-                <p class="product-detail-description">${product.description}</p>
-                <div class="tag-list">${tags}</div>
-                <div class="product-detail-highlights">
-                    <div class="detail-pill">Clean styled jar</div>
-                    <div class="detail-pill">Home fragrance mood</div>
-                    <div class="detail-pill">Gift-ready pick</div>
-                </div>
-                <div class="product-detail-actions">
-                    <input type="number" min="1" value="1" class="quantity product-detail-quantity" data-product-id="${product.id}" aria-label="Quantity for ${product.name}">
-                    <button class="add-to-cart" data-product-id="${product.id}" type="button">Add to Cart</button>
-                    <a href="cart.html" class="secondary-link">Go to Cart</a>
-                </div>
-            </div>
-        </article>
-    `;
-=======
     const relatedProducts = products
         .filter((item) => item.id !== product.id)
         .slice(0, 4)
@@ -600,7 +573,6 @@ function renderProductDetailPage() {
         </div>
     `;
     refreshRevealTargets();
->>>>>>> bd0a21b (Updated home page and buttons and product page)
 }
 
 function getSelectedPaymentMethod() {
@@ -669,8 +641,6 @@ function openContactChannels(orderText, orderId) {
     window.location.href = mailtoUrl;
 }
 
-<<<<<<< HEAD
-=======
 function buildPaymentConfirmationMessage(total, customer) {
     const items = cart
         .map((item, index) => `${index + 1}. ${item.name} x ${item.quantity} - ${formatCurrency(item.price * item.quantity)}`)
@@ -699,7 +669,6 @@ function sendPaymentConfirmation(total, customer) {
     }, 250);
 }
 
->>>>>>> bd0a21b (Updated home page and buttons and product page)
 function updateOrderProgress(paymentMethod) {
     if (!orderProgress) {
         return;
@@ -911,11 +880,6 @@ if (completePaymentBtn) {
             return;
         }
 
-<<<<<<< HEAD
-        paymentCompleted = true;
-        updatePaymentSummary(cart.reduce((sum, item) => sum + (item.price * item.quantity), 0));
-        showToast('Payment completed.');
-=======
         const customer = getCustomerDetails();
         if (!customer.name || !customer.phone || !customer.address) {
             alert('Please enter your name, phone number, and address before completing payment.');
@@ -927,7 +891,6 @@ if (completePaymentBtn) {
         updatePaymentSummary(total);
         sendPaymentConfirmation(total, customer);
         showToast('Payment completed and message sent.');
->>>>>>> bd0a21b (Updated home page and buttons and product page)
     });
 }
 
