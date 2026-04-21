@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="./images/profile.jpg">
 </head>
 <body>
-    <div id="intro-split" class="intro-split">
+    <div id="intro-split" class="intro-split">     
         <img src="./images/candle_img.png" alt="Intro Candle" class="intro-image">
     </div>
 
@@ -23,16 +23,14 @@
             <p class="eyebrow">Every flame carries a wish</p>
             <h1>Aura_11🕯️11</h1>
         </div>
-        <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation">☰</button>
         <nav id="main-nav">
-            <button class="nav-close" id="nav-close" aria-label="Close navigation">✕</button>
             <ul>
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#collection" class="nav-link">Collection</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="admin.html" class="admin-nav-link">Admin</a></li>
                 <li>
-                    <a href="cart.html" id="cart-link" class="cart-link nav-link">
+                    <a href="cart.html" id="cart-link" class="cart-link">
                         <span class="cart-icon" aria-hidden="true">🛒</span>
                         <span class="cart-label">cart</span>
                         <span class="cart-badge" id="cart-count">0</span>
@@ -245,29 +243,6 @@
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-    <script>
-        // Hamburger nav toggle
-        const navToggle = document.getElementById('nav-toggle');
-        const navClose  = document.getElementById('nav-close');
-        const mainNav   = document.getElementById('main-nav');
-
-        function openNav() {
-            mainNav.classList.add('nav-open');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeNav() {
-            mainNav.classList.remove('nav-open');
-            document.body.style.overflow = '';
-        }
-
-        navToggle.addEventListener('click', openNav);
-        navClose.addEventListener('click', closeNav);
-
-        // Close nav when a link is tapped
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', closeNav);
-        });
-    </script>
     <script src="script.js"></script>
 </body>
 </html>
