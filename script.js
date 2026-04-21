@@ -4,8 +4,8 @@
 
 const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const API_BASE = isLocal
-  ? `http://${window.location.hostname}:8080/api`
-  : '/api';
+    ? `http://${window.location.hostname}:8080/api`
+    : '/api';
 const LOCAL_CART_KEY = 'aura11-local-cart';
 
 // ── Session ID (sent as X-Session-Id header for cart & favorites) ──
@@ -24,41 +24,41 @@ const HEADERS = {
 };
 
 // ── DOM refs ──────────────────────────────────────────────────
-const cartCount              = document.getElementById('cart-count');
-const cartItems              = document.getElementById('cart-items');
-const cartTotal              = document.getElementById('cart-total');
-const cartSummary            = document.getElementById('cart-summary');
-const checkoutBtn            = document.getElementById('checkout-btn');
-const completePaymentBtn     = document.getElementById('complete-payment-btn');
-const searchInput            = document.getElementById('search');
-const sortSelect             = document.getElementById('sort-select');
-const floralGrid             = document.getElementById('floral-grid');
-const freshGrid              = document.getElementById('fresh-grid');
-const warmGrid               = document.getElementById('warm-grid');
-const catalogStatus          = document.getElementById('catalog-status');
-const resultsSummary         = document.getElementById('results-summary');
-const favoritesList          = document.getElementById('favorites-list');
-const toast                  = document.getElementById('toast');
-const filterChips            = Array.from(document.querySelectorAll('.filter-chip'));
-const slideIndicators        = document.getElementById('slide-indicators');
-const paymentAmount          = document.getElementById('payment-amount');
-const onlinePaymentBox       = document.getElementById('online-payment-box');
-const paymentStatus          = document.getElementById('payment-status');
-const orderProgress          = document.getElementById('order-progress');
-const customerNameInput      = document.getElementById('customer-name');
-const customerPhoneInput     = document.getElementById('customer-phone');
-const customerAddressInput   = document.getElementById('customer-address');
+const cartCount = document.getElementById('cart-count');
+const cartItems = document.getElementById('cart-items');
+const cartTotal = document.getElementById('cart-total');
+const cartSummary = document.getElementById('cart-summary');
+const checkoutBtn = document.getElementById('checkout-btn');
+const completePaymentBtn = document.getElementById('complete-payment-btn');
+const searchInput = document.getElementById('search');
+const sortSelect = document.getElementById('sort-select');
+const floralGrid = document.getElementById('floral-grid');
+const freshGrid = document.getElementById('fresh-grid');
+const warmGrid = document.getElementById('warm-grid');
+const catalogStatus = document.getElementById('catalog-status');
+const resultsSummary = document.getElementById('results-summary');
+const favoritesList = document.getElementById('favorites-list');
+const toast = document.getElementById('toast');
+const filterChips = Array.from(document.querySelectorAll('.filter-chip'));
+const slideIndicators = document.getElementById('slide-indicators');
+const paymentAmount = document.getElementById('payment-amount');
+const onlinePaymentBox = document.getElementById('online-payment-box');
+const paymentStatus = document.getElementById('payment-status');
+const orderProgress = document.getElementById('order-progress');
+const customerNameInput = document.getElementById('customer-name');
+const customerPhoneInput = document.getElementById('customer-phone');
+const customerAddressInput = document.getElementById('customer-address');
 const productDetailContainer = document.getElementById('product-detail');
-const introSplit             = document.getElementById('intro-split');
+const introSplit = document.getElementById('intro-split');
 
 // ── State ─────────────────────────────────────────────────────
-let products        = [];   // loaded from API
+let products = [];   // loaded from API
 let filteredProducts = [];
-let cart            = [];   // synced with API
-let favorites       = new Set();
-let activeFilter    = 'all';
+let cart = [];   // synced with API
+let favorites = new Set();
+let activeFilter = 'all';
 let toastTimer;
-let slideIndex      = 0;
+let slideIndex = 0;
 let revealObserver;
 let paymentCompleted = false;
 let searchDebounce;
@@ -230,10 +230,10 @@ function getMoodTags(product) {
     if (product.category) {
         const map = {
             floral: ['Floral'],
-            fresh:  ['Fresh'],
+            fresh: ['Fresh'],
             citrus: ['Citrus'],
-            woody:  ['Woody'],
-            cozy:   ['Cozy']
+            woody: ['Woody'],
+            cozy: ['Cozy']
         };
         if (map[product.category]) return map[product.category];
     }
@@ -241,10 +241,10 @@ function getMoodTags(product) {
     // Fallback: derive from name + description + notes
     const haystack = `${product.name} ${product.description || ''} ${product.notes || ''}`.toLowerCase();
     const tags = [];
-    if (/(rose|lavender|jasmine|lily|floral|bloom|peony)/.test(haystack))  tags.push('Floral');
-    if (/(ocean|linen|mint|fresh|rain|breeze|cotton|sea)/.test(haystack))   tags.push('Fresh');
-    if (/(orange|lemon|bergamot|grapefruit|citrus|yuzu)/.test(haystack))    tags.push('Citrus');
-    if (/(cedar|sandal|amber|musk|wood|oud|vetiver)/.test(haystack))        tags.push('Woody');
+    if (/(rose|lavender|jasmine|lily|floral|bloom|peony)/.test(haystack)) tags.push('Floral');
+    if (/(ocean|linen|mint|fresh|rain|breeze|cotton|sea)/.test(haystack)) tags.push('Fresh');
+    if (/(orange|lemon|bergamot|grapefruit|citrus|yuzu)/.test(haystack)) tags.push('Citrus');
+    if (/(cedar|sandal|amber|musk|wood|oud|vetiver)/.test(haystack)) tags.push('Woody');
     if (/(vanilla|coffee|chai|cozy|warm|spice|caramel|cashmere)/.test(haystack)) tags.push('Cozy');
     return tags.length > 0 ? tags : ['Signature'];
 }
@@ -302,8 +302,8 @@ function renderProducts() {
     if (!floralGrid || !freshGrid || !warmGrid) return;
 
     floralGrid.innerHTML = '';
-    freshGrid.innerHTML  = '';
-    warmGrid.innerHTML   = '';
+    freshGrid.innerHTML = '';
+    warmGrid.innerHTML = '';
 
     if (filteredProducts.length === 0) {
         setCatalogStatus('No candles matched your search and filter.');
@@ -320,8 +320,8 @@ function renderProducts() {
     filteredProducts.forEach(p => grouped[getCollectionGroup(p)].push(createProductCard(p)));
 
     floralGrid.innerHTML = grouped.floral.length ? grouped.floral.join('') : '<p class="empty-state">No floral candles in this filter.</p>';
-    freshGrid.innerHTML  = grouped.fresh.length  ? grouped.fresh.join('')  : '<p class="empty-state">No fresh or citrus candles in this filter.</p>';
-    warmGrid.innerHTML   = grouped.warm.length   ? grouped.warm.join('')   : '<p class="empty-state">No warm candles in this filter.</p>';
+    freshGrid.innerHTML = grouped.fresh.length ? grouped.fresh.join('') : '<p class="empty-state">No fresh or citrus candles in this filter.</p>';
+    warmGrid.innerHTML = grouped.warm.length ? grouped.warm.join('') : '<p class="empty-state">No warm candles in this filter.</p>';
 
     refreshRevealTargets();
 }
@@ -370,23 +370,23 @@ function renderCart() {
 
     if (cart.length === 0) {
         cartSummary.textContent = '0 items selected';
-        cartTotal.textContent   = 'Total: INR 0';
-        cartItems.innerHTML     = '<p class="empty-state">Your cart is empty.</p>';
+        cartTotal.textContent = 'Total: INR 0';
+        cartItems.innerHTML = '<p class="empty-state">Your cart is empty.</p>';
         updatePaymentSummary(0);
         return;
     }
 
     let grandTotal = 0;
-    let itemCount  = 0;
+    let itemCount = 0;
 
     cart.forEach(item => {
         // item from API: { candle: {...}, quantity, priceAtAdd, subtotal }
-        const candle    = item.candle || {};
-        const qty       = item.quantity || 1;
-        const price     = Number(item.priceAtAdd || candle.price || 0);
+        const candle = item.candle || {};
+        const qty = item.quantity || 1;
+        const price = Number(item.priceAtAdd || candle.price || 0);
         const lineTotal = price * qty;
-        grandTotal     += lineTotal;
-        itemCount      += qty;
+        grandTotal += lineTotal;
+        itemCount += qty;
 
         const div = document.createElement('div');
         div.className = 'cart-item';
@@ -405,7 +405,7 @@ function renderCart() {
     });
 
     cartSummary.textContent = `${itemCount} item${itemCount === 1 ? '' : 's'} selected`;
-    cartTotal.textContent   = `Total: ${formatCurrency(grandTotal)}`;
+    cartTotal.textContent = `Total: ${formatCurrency(grandTotal)}`;
     updatePaymentSummary(grandTotal);
     refreshRevealTargets();
 }
@@ -416,9 +416,9 @@ function renderCart() {
 async function loadProducts() {
     setCatalogStatus('Loading candle catalog...');
     try {
-        const sortBy    = sortSelect ? sortSelect.value : 'featured';
-        const keyword   = searchInput ? searchInput.value.trim() : '';
-        const category  = activeFilter !== 'all' ? activeFilter : undefined;
+        const sortBy = sortSelect ? sortSelect.value : 'featured';
+        const keyword = searchInput ? searchInput.value.trim() : '';
+        const category = activeFilter !== 'all' ? activeFilter : undefined;
 
         products = await fetchCandles({ sortBy, keyword, category });
         filteredProducts = [...products];
@@ -542,8 +542,8 @@ function getSelectedPaymentMethod() {
 
 function getCustomerDetails() {
     return {
-        name:    customerNameInput    ? customerNameInput.value.trim()    : '',
-        phone:   customerPhoneInput   ? customerPhoneInput.value.trim()   : '',
+        name: customerNameInput ? customerNameInput.value.trim() : '',
+        phone: customerPhoneInput ? customerPhoneInput.value.trim() : '',
         address: customerAddressInput ? customerAddressInput.value.trim() : ''
     };
 }
@@ -563,15 +563,15 @@ function updatePaymentUI() {
     onlinePaymentBox.classList.toggle('hidden', !isOnline);
     const total = cart.reduce((s, i) => s + (Number(i.priceAtAdd || 0) * i.quantity), 0);
     updatePaymentSummary(total);
-    
+
     if (isOnline) {
         const gpayContainer = document.getElementById('gpay-container');
         if (gpayContainer) {
             // Using the requested number for UPI ID.
-            const upiId = '9003331456@upi'; 
+            const upiId = 'akashramkumar2002-1@okhdfcbank';
             const name = encodeURIComponent('Aura_11 Candle Shop');
             const upiUri = `upi://pay?pa=${upiId}&pn=${name}&am=${total}&cu=INR`;
-            
+
             gpayContainer.innerHTML = `
                 <p style="font-size:1.1rem; font-weight:600; margin-bottom: 1rem; color:var(--text-strong)">GPay / PhonePe / UPI to: <strong style="font-size:1.2rem;">9003331456</strong></p>
                 <a href="${upiUri}" class="gpay-button" target="_blank" style="display:inline-block; background-color:#111; color:#fff; padding:12px 24px; border-radius:4px; text-decoration:none; font-weight:600; margin-bottom:1rem;">
@@ -587,7 +587,7 @@ function updatePaymentUI() {
 function buildOrderMessage(orderId, total, paymentMethod, customer) {
     const items = cart.map((item, idx) => {
         const candle = item.candle || {};
-        const line   = Number(item.priceAtAdd || 0) * item.quantity;
+        const line = Number(item.priceAtAdd || 0) * item.quantity;
         return `${idx + 1}. ${candle.name} x ${item.quantity} - ${formatCurrency(line)}`;
     }).join('\n');
 
@@ -604,16 +604,16 @@ function buildOrderMessage(orderId, total, paymentMethod, customer) {
 }
 
 function openContactChannels(orderText, orderId) {
-    const wa  = `https://wa.me/919003331456?text=${encodeURIComponent(orderText)}`;
-    const ml  = `mailto:varaks0206@gmail.com?subject=${encodeURIComponent(`New Candle Order ${orderId}`)}&body=${encodeURIComponent(orderText)}`;
+    const wa = `https://wa.me/919003331456?text=${encodeURIComponent(orderText)}`;
+    const ml = `mailto:varaks0206@gmail.com?subject=${encodeURIComponent(`New Candle Order ${orderId}`)}&body=${encodeURIComponent(orderText)}`;
     window.open(wa, '_blank', 'noopener');
     window.location.href = ml;
 }
 
 async function checkout() {
-    const total  = cart.reduce((s, i) => s + (Number(i.priceAtAdd || 0) * i.quantity), 0);
+    const total = cart.reduce((s, i) => s + (Number(i.priceAtAdd || 0) * i.quantity), 0);
     const orderId = `ORD-${Date.now()}`;
-    const method  = getSelectedPaymentMethod();
+    const method = getSelectedPaymentMethod();
     const customer = getCustomerDetails();
 
     if (!customer.name || !customer.phone || !customer.address) {
@@ -660,8 +660,8 @@ function buildPaymentConfirmationMessage(total, customer) {
 
 function sendPaymentConfirmation(total, customer) {
     const text = buildPaymentConfirmationMessage(total, customer);
-    const wa   = `https://wa.me/919003331456?text=${encodeURIComponent(text)}`;
-    const ml   = `mailto:varaks0206@gmail.com?subject=${encodeURIComponent('Online Payment Completed')}&body=${encodeURIComponent(text)}`;
+    const wa = `https://wa.me/919003331456?text=${encodeURIComponent(text)}`;
+    const ml = `mailto:varaks0206@gmail.com?subject=${encodeURIComponent('Online Payment Completed')}&body=${encodeURIComponent(text)}`;
     window.open(wa, '_blank', 'noopener');
     window.setTimeout(() => { window.location.href = ml; }, 250);
 }
@@ -671,7 +671,7 @@ function updateOrderProgress(method) {
     const steps = [
         { title: '1. Order confirmed', text: 'Your cart details are confirmed and received.' },
         { title: '2. Payment completed', text: method === 'online' ? 'Online payment completed successfully.' : 'Cash on Delivery selected.' },
-        { title: '3. Order is ready',    text: 'Your order is being packed and prepared.' },
+        { title: '3. Order is ready', text: 'Your order is being packed and prepared.' },
         { title: '4. Ready for delivery', text: 'The order is now ready for delivery dispatch.' }
     ];
     orderProgress.innerHTML = steps.map(s => `
@@ -682,8 +682,8 @@ function updateOrderProgress(method) {
 }
 
 function resetCheckoutForm() {
-    if (customerNameInput)    customerNameInput.value    = '';
-    if (customerPhoneInput)   customerPhoneInput.value   = '';
+    if (customerNameInput) customerNameInput.value = '';
+    if (customerPhoneInput) customerPhoneInput.value = '';
     if (customerAddressInput) customerAddressInput.value = '';
     const cod = document.querySelector('input[name="payment-method"][value="cod"]');
     if (cod) cod.checked = true;
@@ -696,7 +696,7 @@ function resetCheckoutForm() {
 async function renderProductDetailPage() {
     if (!productDetailContainer) return;
 
-    const params    = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(window.location.search);
     const productId = Number(params.get('id'));
 
     if (!productId) {
@@ -780,13 +780,13 @@ function buildSlideIndicators() {
 }
 
 function showSlides(n) {
-    const slides     = document.querySelectorAll('.slideshow img');
+    const slides = document.querySelectorAll('.slideshow img');
     const indicators = document.querySelectorAll('.indicator');
     if (!slides.length) return;
     if (n >= slides.length) slideIndex = 0;
-    else if (n < 0)         slideIndex = slides.length - 1;
-    else                    slideIndex = n;
-    slides.forEach(s     => s.classList.remove('active'));
+    else if (n < 0) slideIndex = slides.length - 1;
+    else slideIndex = n;
+    slides.forEach(s => s.classList.remove('active'));
     indicators.forEach(i => i.classList.remove('active'));
     slides[slideIndex].classList.add('active');
     if (indicators[slideIndex]) indicators[slideIndex].classList.add('active');
@@ -854,7 +854,7 @@ function setupCardInteractions() {
 //  EVENT LISTENERS
 // ============================================================
 if (searchInput) searchInput.addEventListener('input', applyFilters);
-if (sortSelect)  sortSelect.addEventListener('change', applyFilters);
+if (sortSelect) sortSelect.addEventListener('change', applyFilters);
 
 filterChips.forEach(chip => {
     chip.addEventListener('click', () => {
@@ -875,7 +875,7 @@ document.addEventListener('click', async e => {
     if (addBtn) {
         const productId = Number(addBtn.dataset.productId);
         const actionScope = addBtn.closest('.card-actions, .product-detail-actions');
-        const qtyInput  = actionScope
+        const qtyInput = actionScope
             ? actionScope.querySelector(`.quantity[data-product-id="${productId}"]`)
             : document.querySelector(`.quantity[data-product-id="${productId}"]`);
         const qty = Number(qtyInput?.value || 1);
