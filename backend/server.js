@@ -6,8 +6,8 @@ const app = express();
 const PORT = 8080;
 
 app.use(cors());
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.json({ limit: '100mb' }));
+app.use(express.urlencoded({ limit: '100mb', extended: true }));
 
 // ==========================================
 // MOCK DATA STORE
@@ -67,10 +67,32 @@ let candles = [
     notes: "Sandalwood, Patchouli, Spice",
     imageUrl: "../images/profile.jpg",
     featured: true
+  },
+  {
+    id: 6,
+    name: "Lavender Haze",
+    category: "floral",
+    price: 1400,
+    stock: 25,
+    description: "A calming blend of French lavender and soft vanilla to ease the mind.",
+    notes: "Lavender, Vanilla, Tonka Bean",
+    imageUrl: "../images/profile.jpg",
+    featured: true
+  },
+  {
+    id: 7,
+    name: "Eucalyptus Morning",
+    category: "fresh",
+    price: 1100,
+    stock: 40,
+    description: "Revitalizing and pure, like a deep breath in a sunlit forest.",
+    notes: "Eucalyptus, Mint, Pine",
+    imageUrl: "../images/profile.jpg",
+    featured: false
   }
 ];
 
-let nextCandleId = 6;
+let nextCandleId = 8;
 
 // session_id -> { items: [{ candle: {}, quantity: n, priceAtAdd: p }] }
 const carts = {}; 

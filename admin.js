@@ -30,7 +30,6 @@ const fieldPrice      = document.getElementById('field-price');
 const fieldStock      = document.getElementById('field-stock');
 const fieldDesc       = document.getElementById('field-description');
 const fieldNotes      = document.getElementById('field-notes');
-const fieldImage       = document.getElementById('field-image');
 const fieldImageUpload = document.getElementById('field-image-upload');
 const fieldFeatured    = document.getElementById('field-featured');
 const imagePreviewWrap = document.getElementById('image-preview-wrap');
@@ -52,6 +51,7 @@ const toast           = document.getElementById('toast');
 // ── State ─────────────────────────────────────────────────────
 let allCandles   = [];
 let toastTimer;
+let currentImageUrl = '';
 
 // ============================================================
 //  AUTH — simple password guard
@@ -62,7 +62,12 @@ let toastTimer;
 const ADMIN_PASSWORD = 'aura11admin'; // Change this! Must match AdminController
 
 function isLoggedIn() {
-    return sessionStorage.getItem(SESSION_KEY) === 'true';
+    try {
+        return sessionStorage.getItem(SESSION_KEY) === 'true';
+    } catch (e) {
+        console.warn('sessionStorage is not available. Please run via a local web server (http://localhost) instead of file://');
+        return false;
+    }
 }
 
 function showPanel() {
@@ -78,7 +83,11 @@ function showLogin() {
 loginBtn.addEventListener('click', () => {
     const pw = loginPasswordEl.value.trim();
     if (pw === ADMIN_PASSWORD) {
-        sessionStorage.setItem(SESSION_KEY, 'true');
+        try {
+            sessionStorage.setItem(SESSION_KEY, 'true');
+        } catch (e) {
+            alert("Login state cannot be saved when opening the file directly from your computer. Please use a local server like VS Code Live Server.");
+        }
         loginError.classList.add('hidden');
         showPanel();
         initAdmin();
@@ -94,7 +103,9 @@ loginPasswordEl.addEventListener('keydown', e => {
 });
 
 logoutBtn.addEventListener('click', () => {
-    sessionStorage.removeItem(SESSION_KEY);
+    try {
+        sessionStorage.removeItem(SESSION_KEY);
+    } catch (e) {}
     showLogin();
 });
 
@@ -214,13 +225,13 @@ if (fieldImageUpload) {
         if (file) {
             const reader = new FileReader();
             reader.onload = (ev) => {
-                fieldImage.value = ev.target.result;
+                currentImageUrl = ev.target.result;
                 imagePreview.src = ev.target.result;
                 imagePreviewWrap.classList.remove('hidden');
             };
             reader.readAsDataURL(file);
         } else {
-            if (!fieldImage.value) {
+            if (!currentImageUrl) {
                 imagePreviewWrap.classList.add('hidden');
             }
         }
@@ -260,7 +271,7 @@ candleForm.addEventListener('submit', async e => {
         stock:       parseInt(fieldStock.value),
         description: fieldDesc.value.trim(),
         notes:       fieldNotes.value.trim(),
-        imageUrl:    fieldImage.value.trim(),
+        imageUrl:    currentImageUrl,
         featured:    fieldFeatured.checked
     };
 
@@ -308,7 +319,7 @@ window.startEdit = function(id) {
     fieldStock.value      = candle.stock;
     fieldDesc.value       = candle.description || '';
     fieldNotes.value      = candle.notes || '';
-    fieldImage.value      = candle.imageUrl || '';
+    currentImageUrl       = candle.imageUrl || '';
     if (fieldImageUpload) fieldImageUpload.value = ''; // clear file input
     fieldFeatured.checked = candle.featured;
 
@@ -348,6 +359,7 @@ window.deleteCandle = async function(id, name) {
 // ============================================================
 function resetForm() {
     editIdField.value     = '';
+    currentImageUrl       = '';
     candleForm.reset();
     fieldFeatured.checked = false;
     formTitle.textContent = 'Add New Candle';
@@ -374,9 +386,13 @@ async function initAdmin() {
 }
 
 // Auto-restore session on page load
-if (isLoggedIn()) {
-    showPanel();
-    initAdmin();
-} else {
+try {
+    if (isLoggedIn()) {
+        showPanel();
+        initAdmin();
+    } else {
+        showLogin();
+    }
+} catch (e) {
     showLogin();
 }
