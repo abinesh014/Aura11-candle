@@ -1,0 +1,14 @@
+{
+  "name": "aura11-candle-store",
+  "version": "1.0.0",
+  "description": "Aura_11 Candle Store - Full Stack",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "uuid": "^14.0.0"
+  }
+}

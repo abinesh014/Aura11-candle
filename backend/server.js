@@ -1,13 +1,23 @@
 const express = require('express');
 const cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
+const path = require('path');
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
+// ── Serve the frontend (index.html, style.css, script.js, images, etc.) ──
 app.use(cors());
 app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ limit: '100mb', extended: true }));
+
+// Serve static files from the parent folder (d:\Candle)
+app.use(express.static(path.join(__dirname, '..')));
+
+// Redirect root to index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
+});
 
 // ==========================================
 // MOCK DATA STORE
@@ -352,6 +362,10 @@ app.delete('/api/admin/candles/:id', adminAuth, (req, res) => {
 });
 
 
-app.listen(PORT, () => {
-  console.log(`Aura_11 Backend running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log('\n  ====================================');
+  console.log('   Aura_11 Backend is RUNNING!');
+  console.log('  ====================================');
+  console.log(`\n  Open your site at: http://localhost:${PORT}`);
+  console.log('  Press Ctrl+C to stop the server.\n');
 });

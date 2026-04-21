@@ -1,9 +1,11 @@
 // ============================================================
 //  Aura_11 — script.js  (API-wired version)
-//  Backend: http://localhost:8080/api
 // ============================================================
 
-const API_BASE = 'http://localhost:8080/api';
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_BASE = isLocal
+  ? `http://${window.location.hostname}:8080/api`
+  : '/api';
 const LOCAL_CART_KEY = 'aura11-local-cart';
 
 // ── Session ID (sent as X-Session-Id header for cart & favorites) ──

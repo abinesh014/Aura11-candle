@@ -3,7 +3,8 @@
 //  All candle CRUD operations via Spring Boot API
 // ============================================================
 
-const API_BASE    = 'http://localhost:8080/api';
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_BASE    = isLocal ? `http://${window.location.hostname}:8080/api` : '/api';
 const ADMIN_KEY   = 'aura11-admin-secret';   // must match backend AdminController
 const SESSION_KEY = 'aura11-admin-logged-in';
 
