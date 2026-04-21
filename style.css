@@ -1606,3 +1606,397 @@ footer {
         padding-top: 186px;
     }
 }
+
+/* ============================================================
+   MOBILE HAMBURGER NAV
+   ============================================================ */
+.nav-toggle {
+    display: none;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    color: #fff9f4;
+    font-size: 1.5rem;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+}
+
+.nav-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================
+   MOBILE — 640px and below (phones)
+   ============================================================ */
+@media (max-width: 640px) {
+
+    /* ── Header: compact single row ─── */
+    .site-header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        gap: 0.5rem;
+    }
+
+    .brand-block {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .brand-block h1 {
+        font-size: 1.35rem;
+    }
+
+    .eyebrow {
+        display: none;
+    }
+
+    .profile-logo-link {
+        order: 3;
+        margin-left: 0;
+    }
+
+    .profile-logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* ── Hamburger button ─── */
+    .nav-toggle {
+        display: inline-flex;
+        order: 2;
+    }
+
+    /* ── Nav: collapsible drawer ─── */
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2000;
+        background: rgba(20, 11, 7, 0.97);
+        backdrop-filter: blur(20px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    nav.nav-open {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        text-align: center;
+        width: 100%;
+        padding: 0 2rem;
+    }
+
+    nav a {
+        display: block;
+        padding: 1rem 1.5rem;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.07);
+        font-size: 1.2rem;
+    }
+
+    nav a:hover {
+        background: rgba(255, 255, 255, 0.14);
+    }
+
+    .cart-link {
+        justify-content: center;
+    }
+
+    /* Close button inside nav */
+    .nav-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        color: #fff9f4;
+        font-size: 1.4rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* ── Main content ─── */
+    main {
+        padding: 0 0.6rem 4rem;
+    }
+
+    section {
+        width: 100%;
+        padding: 1.1rem;
+        border-radius: 20px;
+        margin-bottom: 0.9rem;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    /* ── Slideshow ─── */
+    .slideshow-container {
+        min-height: 100svh;
+        padding-top: 70px;
+    }
+
+    .slideshow-overlay {
+        width: calc(100% - 1.2rem);
+        margin: 6vh auto 0;
+        padding: 1.1rem;
+        border-radius: 20px;
+    }
+
+    .slideshow-overlay h2 {
+        font-size: clamp(1.9rem, 9vw, 3rem);
+        line-height: 1;
+    }
+
+    .slideshow-overlay p:not(.eyebrow) {
+        font-size: 0.9rem;
+        margin: 0.6rem 0;
+    }
+
+    .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+        margin: 1rem 0 1.2rem;
+    }
+
+    .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+
+    .hero-stats article {
+        padding: 0.65rem 0.4rem;
+    }
+
+    .hero-stats strong {
+        font-size: 1.15rem;
+    }
+
+    .hero-stats span {
+        font-size: 0.7rem;
+    }
+
+    /* ── Buttons — large touch targets ─── */
+    .primary-link,
+    .secondary-link,
+    .add-to-cart,
+    #checkout-btn,
+    .details-link {
+        padding: 0.95rem 1.2rem;
+        font-size: 0.95rem;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* ── Candle grid ─── */
+    .candle-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .candle img {
+        height: 140px;
+    }
+
+    .card-content {
+        padding: 0.8rem;
+    }
+
+    .candle h3 {
+        font-size: 1.2rem;
+    }
+
+    .price {
+        font-size: 0.9rem;
+    }
+
+    .description {
+        font-size: 0.85rem;
+        min-height: unset;
+    }
+
+    .tag {
+        font-size: 0.72rem;
+        padding: 0.3rem 0.55rem;
+    }
+
+    .card-actions {
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: 1fr;
+    }
+
+    .quantity {
+        max-width: none;
+    }
+
+    /* ── Section headings ─── */
+    .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    section h2 {
+        font-size: clamp(1.7rem, 7vw, 2.5rem);
+    }
+
+    /* ── Collection ─── */
+    .catalog-toolbar {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-grid,
+    .checkout-layout,
+    .checkout-fields,
+    .product-detail-card,
+    .related-products-grid,
+    .intro-panel,
+    .about-layout,
+    .feature-strip {
+        grid-template-columns: 1fr;
+    }
+
+    .collection-group {
+        padding: 0.9rem;
+        border-radius: 18px;
+    }
+
+    .collection-copy h3 {
+        font-size: 1.6rem;
+    }
+
+    /* ── Favorites / Cart ─── */
+    .favorite-card,
+    .cart-item {
+        display: grid;
+        grid-template-columns: 1fr;
+        padding: 0.9rem;
+        border-radius: 16px;
+    }
+
+    .favorite-card img {
+        width: 100%;
+        height: 160px;
+    }
+
+    .favorite-card-actions,
+    .cart-item-actions {
+        width: 100%;
+        display: grid;
+        gap: 0.5rem;
+    }
+
+    .favorite-remove-btn,
+    .cart-item button {
+        width: 100%;
+        text-align: center;
+        padding: 0.85rem;
+    }
+
+    /* ── Product detail ─── */
+    .product-detail-media img {
+        min-height: 220px;
+    }
+
+    .product-detail-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .product-detail-quantity {
+        max-width: none;
+    }
+
+    /* ── Cart page ─── */
+    .cart-page-main {
+        padding-top: 80px;
+    }
+
+    .cart-preview,
+    .cart-hero,
+    .standalone-cart-section,
+    .contact-panel,
+    .product-detail-section {
+        width: 100%;
+    }
+
+    /* ── Toast ─── */
+    .toast {
+        left: 10px;
+        right: 10px;
+        bottom: 14px;
+        text-align: center;
+        font-size: 0.92rem;
+    }
+
+    /* ── Slideshow arrows ─── */
+    .prev, .next {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+
+    .prev { left: 8px; }
+    .next { right: 8px; }
+
+    /* ── Results summary ─── */
+    .results-summary {
+        font-size: 0.88rem;
+    }
+}
+
+/* ============================================================
+   VERY SMALL PHONES — 380px and below
+   ============================================================ */
+@media (max-width: 380px) {
+    .brand-block h1 {
+        font-size: 1.15rem;
+    }
+
+    .candle-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .candle img {
+        height: 170px;
+    }
+
+    .hero-stats {
+        grid-template-columns: 1fr;
+        gap: 0.45rem;
+    }
+
+    .slideshow-overlay {
+        margin-top: 4vh;
+    }
+}
