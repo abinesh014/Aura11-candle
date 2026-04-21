@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Candle Cart</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="page-glow page-glow-left"></div>
     <div class="page-glow page-glow-right"></div>
@@ -16,7 +20,7 @@
     <header class="site-header">
         <div class="brand-block">
             <p class="eyebrow">Hand-poured calm</p>
-            <h1>Candle Emporium</h1>
+            <h1>Aura_11🕯️11</h1>
         </div>
         <nav>
             <ul>
@@ -41,7 +45,8 @@
         <section class="cart-hero">
             <p class="eyebrow">Checkout space</p>
             <h2>Your candle bag, all in one place.</h2>
-            <p class="cart-preview-copy">Review selected candles, remove items, and complete your order without scrolling through the full storefront.</p>
+            <p class="cart-preview-copy">Review selected candles, remove items, and complete your order without
+                scrolling through the full storefront.</p>
             <a href="index.html#collection" class="secondary-link">Continue Shopping</a>
         </section>
 
@@ -69,7 +74,8 @@
                         </label>
                         <label class="checkout-field checkout-field-full">
                             <span>Delivery Address</span>
-                            <textarea id="customer-address" rows="4" placeholder="Enter your delivery address"></textarea>
+                            <textarea id="customer-address" rows="4"
+                                placeholder="Enter your delivery address"></textarea>
                         </label>
                     </div>
                 </div>
@@ -85,12 +91,17 @@
                         <label class="payment-option">
                             <input type="radio" name="payment-method" value="online">
                             <span class="payment-option-icon" aria-hidden="true">UPI</span>
-                            <span>Online Payment</span>
+                            <span>Google Pay / UPI</span>
                         </label>
                     </div>
                     <div id="online-payment-box" class="payment-box hidden">
-                        <p class="payment-title">Exact online payment amount</p>
+                        <p class="payment-title">Exact payment amount</p>
                         <strong id="payment-amount">INR 0</strong>
+
+                        <div id="gpay-container" class="gpay-container" style="text-align: center; margin: 1.5rem 0;">
+                            <!-- Populated by JS -->
+                        </div>
+
                         <div class="payment-instructions">
                             <div class="payment-step">
                                 <span class="payment-step-badge">1</span>
@@ -98,14 +109,15 @@
                             </div>
                             <div class="payment-step">
                                 <span class="payment-step-badge">2</span>
-                                <p>After payment, tap complete payment so your order details and payment confirmation are sent to us.</p>
+                                <p>After payment, tap complete payment so your order details and payment confirmation
+                                    are sent to us.</p>
                             </div>
                             <div class="payment-step">
                                 <span class="payment-step-badge">3</span>
                                 <p>Then press Place Order to finish your checkout.</p>
                             </div>
                         </div>
-                        <p class="payment-note">Payment confirmation will be shared to WhatsApp and email.</p>
+                        <p class="payment-note">Payment confirmation will be shared to WhatsApp and email. Please attach your payment screenshot in the WhatsApp chat.</p>
                         <button id="complete-payment-btn" type="button" class="secondary-link">Complete Payment</button>
                     </div>
                     <div id="payment-status" class="payment-status">Payment pending</div>
@@ -152,7 +164,7 @@
                                 <p class="contact-card-note">Send order details directly by mail</p>
                             </div>
                         </div>
-                        <a href="mailto:abineshofficial01@gmail.com">abineshofficial01@gmail.com</a>
+                        <a href="mailto:varaks0206@gmail.com">varaks0206@gmail.com</a>
                     </article>
                     <article class="contact-card">
                         <div class="contact-card-top">
@@ -162,7 +174,7 @@
                                 <p class="contact-card-note">Chat with us for order updates</p>
                             </div>
                         </div>
-                        <a href="https://wa.me/918072673238" target="_blank" rel="noreferrer">8072673238</a>
+                        <a href="https://wa.me/919003331456" target="_blank" rel="noreferrer">9003331456</a>
                     </article>
                 </div>
             </div>
@@ -170,11 +182,12 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Candle Emporium</p>
+        <p>&copy; 2026 Aura_11🕯️11</p>
     </footer>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <script src="script.js"></script>
 </body>
+
 </html>

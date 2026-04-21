@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — Aura_11 🕯️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ── LOGIN OVERLAY ───────────────────────────────────────── -->
+<div id="admin-login-overlay" class="admin-overlay">
+    <div class="admin-login-box">
+        <p class="eyebrow">Restricted access</p>
+        <h2>Admin Login</h2>
+        <p class="admin-login-sub">Enter the admin password to manage the candle catalog.</p>
+        <div class="admin-field">
+            <label for="admin-password-input">Password</label>
+            <input type="password" id="admin-password-input" placeholder="Enter admin password" autocomplete="current-password">
+        </div>
+        <p id="admin-login-error" class="admin-error hidden">Incorrect password. Try again.</p>
+        <button id="admin-login-btn" class="admin-btn-primary">Login</button>
+        <a href="index.html" class="admin-back-link">← Back to store</a>
+    </div>
+</div>
+
+<!-- ── ADMIN PANEL (hidden until logged in) ───────────────── -->
+<div id="admin-panel" class="hidden">
+
+    <div class="page-glow page-glow-left"></div>
+    <div class="page-glow page-glow-right"></div>
+
+    <header class="site-header">
+        <div class="brand-block">
+            <p class="eyebrow">Admin Dashboard</p>
+            <h1>Aura_11 🕯️ Admin</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">← Store</a></li>
+                <li><button id="admin-logout-btn" class="admin-nav-logout">Logout</button></li>
+            </ul>
+        </nav>
+        <div class="admin-status-badge" id="admin-status-badge">● Connected</div>
+    </header>
+
+    <main class="admin-main">
+
+        <!-- Stats bar -->
+        <section class="admin-stats-bar">
+            <div class="admin-stat">
+                <span class="admin-stat-value" id="stat-total">—</span>
+                <span class="admin-stat-label">Total candles</span>
+            </div>
+            <div class="admin-stat">
+                <span class="admin-stat-value" id="stat-featured">—</span>
+                <span class="admin-stat-label">Featured</span>
+            </div>
+            <div class="admin-stat">
+                <span class="admin-stat-value" id="stat-instock">—</span>
+                <span class="admin-stat-label">In stock</span>
+            </div>
+            <div class="admin-stat">
+                <span class="admin-stat-value" id="stat-categories">—</span>
+                <span class="admin-stat-label">Categories</span>
+            </div>
+        </section>
+
+        <!-- Add / Edit form -->
+        <section class="admin-section">
+            <div class="admin-section-header">
+                <div>
+                    <p class="eyebrow">Catalog management</p>
+                    <h2 id="form-title">Add New Candle</h2>
+                </div>
+                <button id="reset-form-btn" class="admin-btn-ghost hidden">✕ Cancel Edit</button>
+            </div>
+
+            <form id="candle-form" class="admin-form" novalidate>
+                <input type="hidden" id="edit-candle-id">
+
+                <div class="admin-form-grid">
+                    <div class="admin-field admin-field-wide">
+                        <label for="field-name">Candle Name <span class="req">*</span></label>
+                        <input type="text" id="field-name" placeholder="e.g. Rose Reverie" required maxlength="100">
+                    </div>
+
+                    <div class="admin-field">
+                        <label for="field-category">Category <span class="req">*</span></label>
+                        <select id="field-category" required>
+                            <option value="">Select category</option>
+                            <option value="floral">🌸 Floral</option>
+                            <option value="fresh">🌿 Fresh</option>
+                            <option value="citrus">🍋 Citrus</option>
+                            <option value="woody">🌲 Woody</option>
+                            <option value="cozy">☕ Cozy</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-field">
+                        <label for="field-price">Price (INR) <span class="req">*</span></label>
+                        <input type="number" id="field-price" placeholder="e.g. 699" min="1" step="0.01" required>
+                    </div>
+
+                    <div class="admin-field">
+                        <label for="field-stock">Stock Qty <span class="req">*</span></label>
+                        <input type="number" id="field-stock" placeholder="e.g. 25" min="0" required>
+                    </div>
+
+                    <div class="admin-field admin-field-wide">
+                        <label for="field-description">Description</label>
+                        <textarea id="field-description" rows="3" placeholder="Short description shown on product cards..." maxlength="500"></textarea>
+                    </div>
+
+                    <div class="admin-field admin-field-wide">
+                        <label for="field-notes">Fragrance Notes</label>
+                        <input type="text" id="field-notes" placeholder="e.g. lavender, vanilla, chamomile" maxlength="300">
+                    </div>
+
+                    <div class="admin-field admin-field-wide">
+                        <label for="field-image-upload">Product Image</label>
+                        <input type="hidden" id="field-image">
+                        <input type="file" id="field-image-upload" accept="image/*" class="admin-file-input" style="padding: 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-card); cursor: pointer;">
+                        <span class="admin-field-hint">Upload an image from your device. It will be saved securely.</span>
+                    </div>
+
+                    <div class="admin-field">
+                        <label class="admin-checkbox-label">
+                            <input type="checkbox" id="field-featured">
+                            <span class="admin-checkbox-box"></span>
+                            Mark as Featured
+                        </label>
+                        <span class="admin-field-hint">Featured candles appear first in the default sort</span>
+                    </div>
+                </div>
+
+                <!-- Image preview -->
+                <div id="image-preview-wrap" class="admin-image-preview hidden">
+                    <img id="image-preview" src="" alt="Preview">
+                </div>
+
+                <div class="admin-form-actions">
+                    <button type="submit" class="admin-btn-primary" id="submit-btn">
+                        <span id="submit-label">Add Candle</span>
+                    </button>
+                    <p class="admin-form-status" id="form-status"></p>
+                </div>
+            </form>
+        </section>
+
+        <!-- Filter / search bar -->
+        <section class="admin-section">
+            <div class="admin-section-header">
+                <div>
+                    <p class="eyebrow">Catalog overview</p>
+                    <h2>All Candles</h2>
+                </div>
+                <div class="admin-toolbar">
+                    <input type="text" id="admin-search" placeholder="Search candles..." class="admin-search-input">
+                    <select id="admin-filter-cat" class="admin-select">
+                        <option value="">All categories</option>
+                        <option value="floral">Floral</option>
+                        <option value="fresh">Fresh</option>
+                        <option value="citrus">Citrus</option>
+                        <option value="woody">Woody</option>
+                        <option value="cozy">Cozy</option>
+                    </select>
+                    <button id="admin-refresh-btn" class="admin-btn-ghost">↻ Refresh</button>
+                </div>
+            </div>
+
+            <p id="admin-catalog-status" class="admin-catalog-status">Loading catalog...</p>
+
+            <div id="admin-candle-table-wrap" class="admin-table-wrap">
+                <table class="admin-table" id="admin-candle-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Featured</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-table-body"></tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer><p>&copy; 2026 Aura_11 Admin</p></footer>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+</div><!-- /admin-panel -->
+
+<script src="admin.js"></script>
+</body>
+</html>

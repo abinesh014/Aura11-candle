@@ -201,6 +201,17 @@ nav a:hover::after {
     transform: scaleX(1);
 }
 
+.admin-nav-link {
+    background: rgba(255, 214, 170, 0.15) !important;
+    border: 1px solid rgba(255, 200, 150, 0.25) !important;
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem !important;
+    color: #ffd4b7 !important;
+}
+
+.admin-nav-link:hover { background: rgba(255, 214, 170, 0.3) !important; }
+.admin-nav-link::after { display: none !important; }
+
 .cart-link {
     display: inline-flex;
     align-items: center;

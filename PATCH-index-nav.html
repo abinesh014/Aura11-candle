@@ -1,0 +1,27 @@
+<!-- 
+====================================================================
+  PATCH: Add this <li> to the <nav><ul> in your index.html
+  Place it just before the cart link:
+====================================================================
+
+    <li><a href="admin.html" class="admin-nav-link">Admin</a></li>
+
+====================================================================
+  Also add this CSS snippet to your style.css (or admin.css):
+====================================================================
+
+.admin-nav-link {
+    background: rgba(255, 214, 170, 0.15) !important;
+    border: 1px solid rgba(255, 200, 150, 0.25) !important;
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem !important;
+    color: #ffd4b7 !important;
+}
+.admin-nav-link:hover { background: rgba(255, 214, 170, 0.3) !important; }
+.admin-nav-link::after { display: none !important; }
+
+====================================================================
+  In production: remove the Admin link from the public nav.
+  Only keep admin.html accessible by URL to those who know the password.
+====================================================================
+-->
